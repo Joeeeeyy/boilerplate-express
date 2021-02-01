@@ -1,5 +1,6 @@
-var express = require('express');
-var app = express();
+let express = require('express');
+let app = express();
+require('dotenv').config();
 
 // 1. Meet the Node console
 
@@ -23,11 +24,19 @@ app.use(express.static(__dirname + "/public"));
 
 // 5. Serve JSON on a Specifc Route
 
-app.get("/json", (req, res) => {
-    res.json({ "messsage": "Hello json" });
-});
+// app.get("/json", (req, res) => {
+            //     res.json({ "messsage": "Hello json" });
+            // });
 
 // 6. Use the .env File
+
+app.get("/json", (req, res) => {
+	if(process.env.MESSAGE_STYLE === 'uppercase'){
+		res.json({"message": "HELLO JSON"})
+	} else {
+		res.json({"message": "Hello json"})
+	}
+});
 
 // 7. Implement a Root-Level Request Logger Middleware
 
