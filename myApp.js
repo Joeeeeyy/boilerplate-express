@@ -3,13 +3,29 @@ var app = express();
 
 // 1. Meet the Node console
 
+// console.log("Hello world");
+
 // 2.Start a Working Express Server
+
+// app.get("/", (req, res) => {
+//   res.send('Hello Express');
+// });
 
 // 3. Serve an HTML File
 
+app.get("/", (req, res) => {
+    res.sendFile(__dirname + "/views/index.html");
+});
+
 // 4. Serve Static Assets
 
+app.use(express.static(__dirname + "/public"));
+
 // 5. Serve JSON on a Specifc Route
+
+app.get("/json", (req, res) => {
+    res.json({ "messsage": "Hello json" });
+});
 
 // 6. Use the .env File
 
